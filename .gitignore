@@ -1,0 +1,9 @@
+# Logs and databases #
+*.log
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+# some extra shiznit
+**/node_modules/**/*
