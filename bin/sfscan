@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+ 
+var util = require('util');
+var program = require('commander');
+var version = require('../package').version;
+var scan = require('../lib/sfscan');
+
+function range(val) {
+  return val.split('~').map(Number);
+}
+
+program
+  .version(version)
+  .option('-p, --port', 'Scan ports')
+  .option('-h, --host [host]', 'Scan ips')
+  .option('-i, --ip', 'Scan ips')
+  .option('-r, --range <a>~<b>', 'Set area scan type', range)
+  .parse(process.argv);
+
+if (program.host) {
+  if (!program.range) {
+    console.log('please use -r to specialfy the ports range');
+    return;
+  }
+  if (program.range.length != 2) {
+    console.log('range not right');
+    return;
+  }
+  console.time('ports scan');
+  scan.port({
+    host: program.host,
+    start: program.range[0],
+    end: program.range[1],
+    cli: true
+  }, function(err, result) {    
+    console.timeEnd('ports scan');
+    console.log('open ports:', result);
+  });
+  return;
+}
+
+console.log('Usage Example:');
+console.log('node sfscan -h andmeics.com -r 0~65535');
