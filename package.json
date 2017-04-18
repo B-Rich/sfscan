@@ -1,0 +1,36 @@
+{
+  "name": "sfscan",
+  "version": "1.0.0",
+  "description": "Scan ports & ips",
+  "main": "index",
+  "dependencies": {
+    "async": "^1.5.2",
+    "commander": "^2.9.0",
+    "progress": "~1.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./bin/sfscan -h andmeics.com -r 1~65535"
+  },
+  "bin": {
+    "sfscan": "./bin/sfscan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andmeics/sfscan.git"
+  },
+  "keywords": [
+    "scan",
+    "port",
+    "port scan"
+  ],
+  "author": {
+    "name": "andmeics",
+    "email": "daniel@andmeics.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andmeics/sfscan/issues"
+  },
+  "readmeFilename": "README.md"
+}
